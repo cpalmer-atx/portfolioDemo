@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import Navbar from './components/Navbar';
+import SpaceX from './components/spacex/SpaceX';
+import GitFinder from './components/gitFinder/GitFinder';
+import Waypoints from './components/waypoints/Waypoints';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [ app, setApp ] = useState(0);
+
+  const active = [
+    <GitFinder />,
+    <SpaceX />,
+    <Waypoints />
+  ]
+
+  const view = {
+    activeApp: active[app],
+  }
+
+  // Set active app
+  const viewApp = (index) => {
+    view.activeApp = setApp(index);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="root-container">
+      <Navbar toggleApp={viewApp}/>
+      {view.activeApp}
     </div>
   );
 }
