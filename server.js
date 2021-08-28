@@ -8,10 +8,13 @@ dotenv.config({ path: './config/config.env' });
 const app = express();
 
 const test = require('./routes/test');
+const spacex = require('./routes/spacex');
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/test', test);
+app.use('/api/spacex', spacex);
 
 const PORT = process.env.PORT || 5000;
 
