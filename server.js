@@ -9,12 +9,14 @@ const app = express();
 
 const test = require('./routes/test');
 const spacex = require('./routes/spacex');
+const github = require('./routes/github');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/test', test);
 app.use('/api/spacex', spacex);
+app.use('/api/github', github);
 
 const PORT = process.env.PORT || 5000;
 
